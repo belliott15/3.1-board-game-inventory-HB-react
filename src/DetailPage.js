@@ -38,7 +38,7 @@ export default function DetailPage() {
   return (
     <div className='detail'>
       <form onSubmit={handleSubmit}>
-        <h2>Add board game</h2>
+        <h2>Edit {game.title}</h2>
         <label>
             Title
           {/* on change, set the title in state */}
