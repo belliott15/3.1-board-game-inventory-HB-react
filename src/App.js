@@ -23,13 +23,12 @@ export default function App() {
   // add a useEffect to get the user and inject the user object into state on load
   useEffect(() => {
     const user = getUser();
-
-
-    if (user) {
-      setEmail(user.user.email);
-      setToken(user.access_token_token);
-      setUser(user);
-    }
+    setUser(user);
+    // if (user) {
+    //   setEmail(user.user.email);
+    //   setToken(user.access_token_token);
+    //   setUser(user);
+    // }
   }, []);
   async function handleLogout() {
     // call the logout function
@@ -44,9 +43,9 @@ export default function App() {
       <div className='App'>
         <header>
           {/* if there is a user in state, render out a link to the board games list, the create page, and add a button to let the user logout */}
-          {user ? 
+          {token ? 
             <nav>
-              <ul>
+              <ul className='navigation'>
                 <li>
                   <NavLink to="/board-games">Home</NavLink>
                 </li>
