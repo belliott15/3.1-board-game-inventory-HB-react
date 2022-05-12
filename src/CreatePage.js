@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import { createGame, getGameById } from './services/fetch-utils';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { createGame } from './services/fetch-utils';
 
 export default function CreatePage() {
   // you'll need the history hook from react-router-dom to do your redirecting in the handleSubmit
   const { push } = useHistory();
-  const { id } = useParams();
   // here's the state you'll need:
     // title;
     // genre;
@@ -13,14 +12,14 @@ export default function CreatePage() {
     // description;
     // minPlayers;
     // maxPlayers;
-  const [gameData, setGameData] = useState([{
+  const [gameData, setGameData] = useState({
     title: '', 
     genre: '',
     designer: '',
     description: '',
-    minPlayers: 0,
-    maxPlayers: 0
-  }]);
+    min_players: 0,
+    max_players: 0
+  });
 
 
   async function handleSubmit(e) {
@@ -74,17 +73,17 @@ export default function CreatePage() {
         <label>
             Min Players
           {/* on change, set the min players in state */}
-          <input value={gameData.minPlayers} onChange={(e) => setGameData({
+          <input value={gameData.min_players} onChange={(e) => setGameData({
             ...gameData, 
-            minPlayers: e.target.value,
+            min_players: e.target.value,
           })}required name='min_players' />
         </label>
         <label>
             Max Players
           {/* on change, set the max players in state */}
-          <input value={gameData.maxPlayers} onChange={(e) => setGameData({
+          <input value={gameData.max_players} onChange={(e) => setGameData({
             ...gameData, 
-            maxPlayers: e.target.value,
+            max_players: e.target.value,
           })}required name='max_players' />
         </label>
         <label>

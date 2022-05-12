@@ -1,12 +1,26 @@
 import { useEffect, useState } from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getGameById } from './services/fetch-utils';
 
 export default function DetailPage() {
-  const [game, setGame] = useState({});
+  const { id } = useParams();
+  const [game, setGame] = useState({
+    title: '',
+    genre: '',
+    designer: '',
+    max_players: 0,
+    min_players: 0,
+    description: ''
+  });
 
   // on mount, fetch and set in state the correct board game for this id (the id can be found in match.params using the correct react-router hook)
-
+  useEffect(() => {
+    async function gameDetail(){
+      const singleGame = await getGameById(id);
+      setGame(singleGame);
+    }
+    gameDetail();
+  }, [id]);
   // refactor this component to be a form that hydrates a form with data using the id from the URL params in react-router
   // this form should let the user update the item on submit
   return (

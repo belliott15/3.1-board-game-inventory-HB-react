@@ -51,7 +51,7 @@ export default function App() {
                   <NavLink to="/board-games">Home</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/create">Board Games</NavLink>
+                  <NavLink to="/create">Create Game</NavLink>
                 </li>
                 <li>
                   <p>Welcome {email}</p>
