@@ -60,7 +60,7 @@ export default function AuthPage({ setEmail, setToken }) {
         <label>
             Password
           {/* on change, update the form state for password */}
-          <input value={signUpFormData.email} onChange={(e) => setSignUpFormData({
+          <input value={signUpFormData.password} onChange={(e) => setSignUpFormData({
             email: signUpFormData.email,
             password: e.target.value,
           })}required type="password" name="password" />
@@ -68,7 +68,7 @@ export default function AuthPage({ setEmail, setToken }) {
         <button>Sign Up</button>
       </form>
       {/* on submit, sign the user in using the function defined above */}
-      <form>
+      <form onSubmit={handleSignIn}>
         <label>
             Email
           {/* on change, update the form state for email */}
