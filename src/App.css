@@ -90,3 +90,8 @@ select {
   width: 60%;
   margin: 0 auto;
 }
+
+.navigation{
+  display: flex;
+  list-style: none;
+}

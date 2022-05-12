@@ -34,6 +34,15 @@ export async function createGame(game){
   return checkError(response);
 }
 
+export async function updateGame(game, id){
+  const response = await client
+    .from('board_games')
+    .update(game)
+    .match({ id });
+
+  return checkError(response);
+}
+
 
 export async function getGames() {
   const response = await client
