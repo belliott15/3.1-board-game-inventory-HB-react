@@ -36,6 +36,7 @@ export default function App() {
     setEmail('');
     setToken('');
     // clear the user in state
+    setUser('');
   }
 
   return (
@@ -43,7 +44,7 @@ export default function App() {
       <div className='App'>
         <header>
           {/* if there is a user in state, render out a link to the board games list, the create page, and add a button to let the user logout */}
-          {token ? 
+          {user && token ? 
             <nav>
               <ul className='navigation'>
                 <li>
@@ -69,7 +70,7 @@ export default function App() {
               {token ? <Redirect to='/board-games' /> 
                 : <AuthPage setEmail={setEmail} setToken={setToken}/>}
             </Route>
-            <Route exact path="/board-games">
+            <Route exact path='/board-games'>
               {/* if there is a user, render the board games list. Otherwise, redirect to the home route/auth page */}
               {token ? <ListPage /> : <Redirect to='/' />}
             </Route>
