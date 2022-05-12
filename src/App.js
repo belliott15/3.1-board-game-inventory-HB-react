@@ -24,9 +24,11 @@ export default function App() {
   useEffect(() => {
     const user = getUser();
 
+
     if (user) {
       setEmail(user.user.email);
       setToken(user.access_token_token);
+      setUser(user);
     }
   }, []);
   async function handleLogout() {
@@ -52,6 +54,7 @@ export default function App() {
                   <NavLink to="/create">Board Games</NavLink>
                 </li>
                 <li>
+                  <p>Welcome {email}</p>
                   <button onClick={handleLogout}>Log out</button>
                 </li>
               </ul>

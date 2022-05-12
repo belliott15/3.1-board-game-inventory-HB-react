@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { signIn, signUp } from './services/fetch-utils.js';
+import { signIn, signUp, getUser } from './services/fetch-utils.js';
 
-export default function AuthPage(props) {
+export default function AuthPage({ setEmail, setToken }) {
   // you'll need to track the form state of the email and password for sign in, and separate state for sign up
   const [signInEmail, setSignInEmail] = useState('');
   const [signInPassword, setSignInPassword] = useState('');
@@ -17,14 +17,31 @@ export default function AuthPage(props) {
     // sign the user in using the form state
     await signIn(signInEmail, signInPassword);
     // set the user in App.js state using the correct prop callback. If you did the ternary right in App.js, this should automatically redirect the user to the board game list
-    
+    const {
+      access_token, 
+      user: {
+        email,
+      }
+    } = getUser();
+
+    setEmail(email);
+    setToken(access_token);
   }
     
   async function handleSignUp(e) {
     e.preventDefault();
     // sign the user up using the form state
-
+    await signUp(signUpFormData.email, signUpFormData.password);
     // set the user in App.js state using the correct prop callback. If you did the ternary right in App.js, this should automatically redirect the user to the board game list
+    const {
+      access_token, 
+      user: {
+        email,
+      }
+    } = getUser();
+
+    setEmail(email);
+    setToken(access_token);
   }
 
   return (
@@ -35,12 +52,18 @@ export default function AuthPage(props) {
         <label>
             Email
           {/* on change, update the form state for email */}
-          <input required type="email" name="email" />
+          <input value={signUpFormData.email} onChange={(e) => setSignUpFormData({
+            email: e.target.value,
+            password: signUpFormData.password,
+          })} required type="email" name="email" />
         </label>
         <label>
             Password
           {/* on change, update the form state for password */}
-          <input required type="password" name="password" />
+          <input value={signUpFormData.email} onChange={(e) => setSignUpFormData({
+            email: signUpFormData.email,
+            password: e.target.value,
+          })}required type="password" name="password" />
         </label>
         <button>Sign Up</button>
       </form>
