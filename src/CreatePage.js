@@ -25,8 +25,8 @@ export default withRouter(class CreatePage extends React.Component {
   }
     
 
-
-  handleSubmit = async (e) => {
+//eslint-disable-next-line
+  handleSubmit = async (e) => { 
     e.preventDefault();
 
     // create a game
