@@ -1,8 +1,9 @@
 import React from 'react';
 import { createGame } from './services/fetch-utils';
+import { withRouter } from 'react-router-dom';
 
 
-export default class CreatePage extends React.Component {
+export default withRouter(class CreatePage extends React.Component {
   // you'll need the history hook from react-router-dom to do your redirecting in the handleSubmit
   // here's the state you'll need:
     // title;
@@ -25,7 +26,7 @@ export default class CreatePage extends React.Component {
     
 
 
-  async handleSubmit(e) {
+  handleSubmit = async (e) => {
     e.preventDefault();
 
     // create a game
@@ -98,4 +99,4 @@ export default class CreatePage extends React.Component {
     );
   }
   
-}
+});
